@@ -1,0 +1,4 @@
+user=victor
+db_url=jdbc:mysql://localhost:3306/atm?serverTimezone=UTC&useSSL=false
+db_user=root
+db_password=orwell1984
