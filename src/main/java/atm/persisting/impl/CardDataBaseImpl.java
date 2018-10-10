@@ -2,7 +2,7 @@ package atm.persisting.impl;
 
 import atm.model.Card;
 import atm.model.TypeCard;
-import atm.persisting.CardDatsBase;
+import atm.persisting.CardDataBase;
 import atm.persisting.impl.utils.MySQLConnector;
 import org.apache.log4j.Logger;
 
@@ -14,22 +14,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CardDataBaseImpl implements CardDatsBase {
+public class CardDataBaseImpl implements CardDataBase {
     final static Logger logger=Logger.getLogger(CardDataBaseImpl.class);
     MySQLConnector mySQLConnector=new MySQLConnector();
 
     @Override
-    public void addCard(Card card) {
+    public void addCard(long id, long accountId, String pin, TypeCard typeCard, String dateMMyy, boolean chip) {
      try(Connection connection=mySQLConnector.getConnection();
      PreparedStatement preparedStatement=connection.prepareStatement("INSERT INTO `card` (id, accountId, pin, type, date, chip, block, reason) VALUES(?,?,?,?,?,?,?,?)")){
-         preparedStatement.setLong(1, card.getId());
-         preparedStatement.setLong(2, card.getAccountId());
-         preparedStatement.setString(3, card.getPin());
-         preparedStatement.setString(4, card.getTypeCard().toString());
-         preparedStatement.setString(5, card.getEndCard().toString());
-         preparedStatement.setBoolean(6, card.isChip());
-         preparedStatement.setBoolean(7, card.isBlock());
-         preparedStatement.setString(8, card.getReason());
+         preparedStatement.setLong(1, id);
+         preparedStatement.setLong(2, accountId);
+         preparedStatement.setString(3, pin);
+         preparedStatement.setString(4, typeCard.toString());
+         preparedStatement.setString(5, dateMMyy.toString());
+         preparedStatement.setBoolean(6, chip);
+         preparedStatement.setBoolean(7, false);
+         preparedStatement.setString(8, null);
          preparedStatement.executeUpdate();
      }catch (SQLException e) {
          logger.error("Add card throws exception: "+e);

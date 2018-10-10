@@ -15,12 +15,12 @@ public class AccountDataBaseImpl implements AccountDataBase {
     MySQLConnector mySQLConnector=new MySQLConnector();
 
     @Override
-    public void addAccount(Account account) {
+    public void addAccount(long id, long inn, int uah) {
         try(Connection connection=mySQLConnector.getConnection();
             PreparedStatement preparedStatement=connection.prepareStatement("INSERT INTO `account` (id, uah, inn) VALUES (?,?,?)")){
-            preparedStatement.setLong(1, account.getId());
-            preparedStatement.setInt(2, account.getBalance().getUah());
-            preparedStatement.setLong(3, account.getInn());
+            preparedStatement.setLong(1, id);
+            preparedStatement.setInt(2, uah);
+            preparedStatement.setLong(3, inn);
             preparedStatement.executeUpdate();
         }catch (SQLException e){
             logger.error("Add account throws exception: "+e);
