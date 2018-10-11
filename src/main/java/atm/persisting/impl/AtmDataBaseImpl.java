@@ -15,12 +15,12 @@ public class AtmDataBaseImpl implements AtmDataBase {
     MySQLConnector mySQLConnector=new MySQLConnector();
 
     @Override
-    public void addAtm(Atm atm) {
-        try(Connection connection = mySQLConnector.getConnection();
+    public void addAtm(int id, int uah) {
+        try(Connection connection=mySQLConnector.getConnection();
             PreparedStatement preparedStatement=connection.prepareStatement("INSERT INTO `atm` (id, uah) VALUES (?,?)")){
-            preparedStatement.setInt(1, atm.getId());
-            preparedStatement.setInt(2, atm.getCash().getUah());
-            preparedStatement.executeUpdate();
+                preparedStatement.setInt(1, id);
+                preparedStatement.setInt(2, uah);
+                preparedStatement.executeUpdate();
         }catch (SQLException e){
             logger.error("Add atm throws exception: "+e);
         }
@@ -29,15 +29,14 @@ public class AtmDataBaseImpl implements AtmDataBase {
     @Override
     public Atm getAtm(int id) {
         Atm atm=null;
-        try(Connection connection = mySQLConnector.getConnection();
+        try(Connection connection=mySQLConnector.getConnection();
             PreparedStatement preparedStatement=connection.prepareStatement("SELECT * FROM `atm` WHERE id=?")){
-            preparedStatement.setInt(1, id);
-            try(ResultSet resultSet=preparedStatement.executeQuery()){
-                try{atm=new Atm(resultSet.getInt("id"), resultSet.getInt("uah"));}
-                catch (Exception e){
-                    logger.error("Get atm throws exception: "+e);
+                preparedStatement.setInt(1, id);
+                try(ResultSet resultSet=preparedStatement.executeQuery()){
+                    while (resultSet.next()){
+                        atm=new Atm(resultSet.getInt("id"), resultSet.getInt("uah"));
+                    }
                 }
-            }
         }catch (SQLException e){
             logger.error("Get atm throws exception: "+e);
         }
@@ -45,12 +44,12 @@ public class AtmDataBaseImpl implements AtmDataBase {
     }
 
     @Override
-    public void updateAtm(Atm atm) {
-        try(Connection connection = mySQLConnector.getConnection();
+    public void updateAtm(int id, int uah) {
+        try(Connection connection=mySQLConnector.getConnection();
             PreparedStatement preparedStatement=connection.prepareStatement("UPDATE `atm` SET uah=? WHERE id=?")){
-            preparedStatement.setInt(1, atm.getCash().getUah());
-            preparedStatement.setInt(2, atm.getId());
-            preparedStatement.executeUpdate();
+                preparedStatement.setInt(1, uah);
+                preparedStatement.setInt(2, id);
+                preparedStatement.executeUpdate();
         }catch (SQLException e){
             logger.error("Update atm throws exception: "+e);
         }
@@ -58,10 +57,10 @@ public class AtmDataBaseImpl implements AtmDataBase {
 
     @Override
     public void deleteAtm(int id) {
-        try(Connection connection = mySQLConnector.getConnection();
+        try(Connection connection=mySQLConnector.getConnection();
             PreparedStatement preparedStatement=connection.prepareStatement("DELETE FROM `atm` WHERE id=?")){
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
+                preparedStatement.setInt(1, id);
+                preparedStatement.executeUpdate();
         }catch (SQLException e){
             logger.error("Delete atm throws exception: "+e);
         }

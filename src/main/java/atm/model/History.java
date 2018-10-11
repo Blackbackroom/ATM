@@ -1,31 +1,35 @@
 package atm.model;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
 
 public class History {
-    private Date date;
-    private int number;
-    private String operaton;
+    Date date;
+    Time time;
+    String transaction;
 
-    public History(Date date, int number, String operaton) {
-        this.date = date;
-        this.number = number;
-        this.operaton = operaton;
+    public History(String currentTimeFromDB, String transaction) {
+        long currentTime=Long.valueOf(currentTimeFromDB);
+        Date date1=new Date(currentTime);
+        this.date=date1;
+        Time time1=new Time(currentTime);
+        this.time=time1;
+        this.transaction = transaction;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public int getNumber() {
-        return number;
+    public Time getTime() {
+        return time;
     }
 
-    public String getOperaton() {
-        return operaton;
+    public String getTransaction() {
+        return transaction;
     }
 
-    public String toString(){
-        return String.valueOf(number)+String.valueOf(date)+String.valueOf(operaton);
+    public String getHistory(){
+        return date+" "+time+" "+transaction;
     }
 }

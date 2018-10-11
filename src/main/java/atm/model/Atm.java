@@ -7,16 +7,13 @@ public class Atm {
     private int id;
     private Money cash;
 
-    public Atm(int id, int cash) throws Exception {
+    public Atm(int id, int deposit) {
         this.id = id;
-        if(cash<0){
-            throw new Exception("Cash can't be <0");
-        }
-        try{
-        this.cash.setUah(cash);}catch (Exception e){
+        cash=new Money();
+        cash.setUah(deposit);
+        if(deposit<0){
             logger.error("Cash can't be <0");
         }
-
     }
 
     public int getId() {

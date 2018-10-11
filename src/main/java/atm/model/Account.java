@@ -2,14 +2,16 @@ package atm.model;
 
 public class Account {
 
-    private long id;
-    private long inn;
+    private int id;
+    private int inn;
     private Money balance;
 
-    public Account(long id, long inn, int amount) {
+
+    public Account(int id, int inn, int uah) {
         this.id = id;
         this.inn = inn;
-        balance.setUah(amount);
+        balance=new Money();
+        balance.setUah(uah);
     }
 
     public void withdraw(int amountUah){

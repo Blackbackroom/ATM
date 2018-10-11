@@ -1,13 +1,13 @@
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 public class Try {
 
 
     public static void main(String[] args) {
+        //checkModel: Account, Atm, Card, History
+        //CheckPersisting: AccountDataBaseImpl, AtmDataBaseImpl, CardDataBaseImpl< HistoryDataBaseImpl
 
-        Date date=new Date();
-        System.out.println(date);
+
+
     }
 }

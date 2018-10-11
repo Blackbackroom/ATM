@@ -11,13 +11,13 @@ final static Logger logger=Logger.getLogger(Card.class);
     private long id;
     private long accountId;
     private String pin;
-    private TypeCard typeCard;
+    private String typeCard;
     private Date endCard;
     private boolean chip;
     private boolean block;
     private String reason;
 
-    public Card(long id, long accountId, String pin, TypeCard typeCard, String dateMMyy, boolean chip){
+    public Card(long id, long accountId, String pin, String typeCard, String dateMMyy, boolean chip){
         this.id=id;
         this.accountId=accountId;
         this.pin=pin;
@@ -44,7 +44,7 @@ final static Logger logger=Logger.getLogger(Card.class);
         return pin;
     }
 
-    public TypeCard getTypeCard() {
+    public String getTypeCard() {
         return typeCard;
     }
 
