@@ -5,13 +5,12 @@ import org.apache.log4j.Logger;
 public class Atm {
     final static Logger logger=Logger.getLogger(Atm.class);
     private int id;
-    private Money cash;
+    private int uah;
 
-    public Atm(int id, int deposit) {
+    public Atm(int id, int uah) {
         this.id = id;
-        cash=new Money();
-        cash.setUah(deposit);
-        if(deposit<0){
+        this.uah=uah;
+        if(uah<0){
             logger.error("Cash can't be <0");
         }
     }
@@ -20,16 +19,16 @@ public class Atm {
         return id;
     }
 
-    public Money getCash() {
-        return cash;
+    public int getUah() {
+        return uah;
     }
 
     public void withdraw(int amount){
-        cash.setUah(cash.getUah()-amount);
+        uah=uah-amount;
     }
 
     public void deposit(int amount){
-        cash.setUah(cash.getUah()+amount);
+        uah=uah+amount;
     }
 
 }

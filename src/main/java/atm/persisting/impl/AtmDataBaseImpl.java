@@ -15,11 +15,11 @@ public class AtmDataBaseImpl implements AtmDataBase {
     MySQLConnector mySQLConnector=new MySQLConnector();
 
     @Override
-    public void addAtm(int id, int uah) {
+    public void addAtm(Atm atm) {
         try(Connection connection=mySQLConnector.getConnection();
             PreparedStatement preparedStatement=connection.prepareStatement("INSERT INTO `atm` (id, uah) VALUES (?,?)")){
-                preparedStatement.setInt(1, id);
-                preparedStatement.setInt(2, uah);
+                preparedStatement.setInt(1, atm.getId());
+                preparedStatement.setInt(2, atm.getUah());
                 preparedStatement.executeUpdate();
         }catch (SQLException e){
             logger.error("Add atm throws exception: "+e);

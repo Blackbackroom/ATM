@@ -8,8 +8,8 @@ import java.util.Date;
 public class Card {
 final static Logger logger=Logger.getLogger(Card.class);
 
-    private long id;
-    private long accountId;
+    private int id;
+    private int accountId;
     private String pin;
     private String typeCard;
     private Date endCard;
@@ -17,7 +17,7 @@ final static Logger logger=Logger.getLogger(Card.class);
     private boolean block;
     private String reason;
 
-    public Card(long id, long accountId, String pin, String typeCard, String dateMMyy, boolean chip){
+    public Card(int id, int accountId, String pin, String typeCard, String dateMMyy, boolean chip){
         this.id=id;
         this.accountId=accountId;
         this.pin=pin;
@@ -32,11 +32,11 @@ final static Logger logger=Logger.getLogger(Card.class);
         reason=null;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public long getAccountId() {
+    public int getAccountId() {
         return accountId;
     }
 

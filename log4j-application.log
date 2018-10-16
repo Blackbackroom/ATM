@@ -94,3 +94,8 @@
 2018-10-11 17:23:39 ERROR AccountDataBaseImpl:26 - Add account throws exception: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
 2018-10-11 17:23:39 INFO  BankOperations:20 - Create account 1, inn 1, deposit100
 2018-10-11 17:25:43 INFO  BankOperations:23 - Account already exist
+2018-10-14 15:47:51 INFO  BankOperations:44 - Atm already exists
+2018-10-14 15:50:10 INFO  BankOperations:44 - Atm already exists
+2018-10-14 15:50:51 INFO  BankOperations:44 - Atm already exists
+2018-10-14 15:52:06 INFO  BankOperations:42 - Create atm 101, with deposit 100 uah
+2018-10-15 07:32:54 INFO  BankOperations:42 - Create atm 1, with deposit 100 uah

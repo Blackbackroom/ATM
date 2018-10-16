@@ -1,5 +1,6 @@
 package atm.service;
 
+import atm.model.Atm;
 import atm.persisting.impl.AccountDataBaseImpl;
 import atm.persisting.impl.AtmDataBaseImpl;
 import atm.persisting.impl.CardDataBaseImpl;
@@ -35,10 +36,10 @@ public class BankOperations {
         }
     }
 
-    public void createAtm(int id, int depositUah){
-        if(atmDataBase.getAtm(id)==null){
-            atmDataBase.addAtm(id, depositUah);
-            historyDataBase.addHistory("Create atm "+id+", with deposit "+depositUah+" uah");
+    public void createAtm(Atm atm){
+        if(atmDataBase.getAtm(atm.getId())==null){
+            atmDataBase.addAtm(atm);
+            historyDataBase.addHistory("Create atm "+atm.getId()+", with deposit "+atm.getUah()+" uah");
             logger.info(historyDataBase.getLastHistory().getTransaction());
         }else {
             logger.info("Atm already exists");

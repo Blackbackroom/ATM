@@ -4,33 +4,32 @@ public class Account {
 
     private int id;
     private int inn;
-    private Money balance;
+    private int uah;
 
 
     public Account(int id, int inn, int uah) {
         this.id = id;
         this.inn = inn;
-        balance=new Money();
-        balance.setUah(uah);
+        this.uah=uah;
     }
 
     public void withdraw(int amountUah){
-        balance.setUah(balance.getUah()-amountUah);
+        uah=uah-amountUah;
     }
 
     public void deposit(int amountUah){
-        balance.setUah(balance.getUah()+amountUah);
+        uah=uah+amountUah;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public long getInn() {
+    public int getInn() {
         return inn;
     }
 
-    public Money getBalance() {
-        return balance;
+    public int getBalance() {
+        return uah;
     }
 }
