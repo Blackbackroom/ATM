@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>Look at index.jsp in webapp</h2>
+<h2>putCard?id=*</h2>
 </body>
 </html>

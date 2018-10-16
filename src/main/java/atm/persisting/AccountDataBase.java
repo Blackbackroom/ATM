@@ -3,9 +3,9 @@ package atm.persisting;
 import atm.model.Account;
 
 public interface AccountDataBase {
-    void addAccount(int id, int inn, int uah);
+    void addAccount(Account account);
     Account getAccount(int id);
-    void updateAccount(int id, int uah);
+    void updateAccount(Account account);
     void deleteAccount(int id);
 
 }

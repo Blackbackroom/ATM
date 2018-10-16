@@ -99,3 +99,14 @@
 2018-10-14 15:50:51 INFO  BankOperations:44 - Atm already exists
 2018-10-14 15:52:06 INFO  BankOperations:42 - Create atm 101, with deposit 100 uah
 2018-10-15 07:32:54 INFO  BankOperations:42 - Create atm 1, with deposit 100 uah
+2018-10-16 21:33:15 ERROR MySQLConnector:28 - Error in connection: java.sql.SQLNonTransientConnectionException: Public Key Retrieval is not allowed
+2018-10-16 21:35:57 ERROR MySQLConnector:28 - Error in connection: java.sql.SQLNonTransientConnectionException: Public Key Retrieval is not allowed
+2018-10-16 21:39:16 ERROR MySQLConnector:28 - Error in connection: java.sql.SQLNonTransientConnectionException: Public Key Retrieval is not allowed
+2018-10-16 22:47:36 ERROR CardOperation:23 - Card blocked
+2018-10-16 23:17:13 INFO  AccountOperation:40 - Deposit money
+2018-10-16 23:21:42 INFO  AccountOperation:49 - 2018-10-1623:21:42Transfer to 2 10
+2018-10-16 23:21:43 INFO  AccountOperation:31 - 2018-10-1623:21:42Withdraw 10
+2018-10-16 23:21:43 INFO  AccountOperation:43 - 2018-10-1623:21:43Deposit 10
+2018-10-16 23:35:59 ERROR AtmOperation:68 - 2018-10-1623:35:59Withdraw cash canceled
+2018-10-16 23:38:35 INFO  AccountOperation:31 - 2018-10-1623:38:35Withdraw from account 10
+2018-10-16 23:38:36 INFO  AtmOperation:65 - 2018-10-1623:38:36Withdraw cash 10

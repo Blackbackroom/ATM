@@ -15,17 +15,17 @@ public class CardDataBaseImpl implements CardDataBase {
     MySQLConnector mySQLConnector=new MySQLConnector();
 
     @Override
-    public void addCard(int id, int accountId, String pin, String typeCard, String dateMMyy, boolean chip) {
+    public void addCard(Card card) {
 
 
         try(Connection connection=mySQLConnector.getConnection();
             PreparedStatement preparedStatement=connection.prepareStatement("INSERT INTO `card` (id, accountId, pin, type, date, chip, block, reason) VALUES (?,?,?,?,?,?,?,?)")){
-                preparedStatement.setInt(1, id);
-                preparedStatement.setInt(2, accountId);
-                preparedStatement.setString(3, pin);
-                preparedStatement.setString(4, typeCard);
-                preparedStatement.setString(5, dateMMyy);
-                preparedStatement.setBoolean(6,chip);
+                preparedStatement.setInt(1, card.getId());
+                preparedStatement.setInt(2, card.getAccountId());
+                preparedStatement.setString(3, card.getPin());
+                preparedStatement.setString(4, card.getTypeCard());
+                preparedStatement.setString(5, card.getEndCard().toString());
+                preparedStatement.setBoolean(6,card.isChip());
                 preparedStatement.setBoolean(7, false);
                 preparedStatement.setString(8, null);
                 preparedStatement.executeUpdate();
@@ -61,12 +61,12 @@ public class CardDataBaseImpl implements CardDataBase {
     }
 
     @Override
-    public void update(int id, boolean block, String reason) {
+    public void update(Card card) {
         try(Connection connection=mySQLConnector.getConnection();
             PreparedStatement preparedStatement=connection.prepareStatement("UPDATE `card` SET block=?, reason=? WHERE id=?")){
-                preparedStatement.setBoolean(1,block);
-                preparedStatement.setString(2, reason);
-                preparedStatement.setInt(3, id);
+                preparedStatement.setBoolean(1,card.isBlock());
+                preparedStatement.setString(2, card.getReason());
+                preparedStatement.setInt(3, card.getId());
                 preparedStatement.executeUpdate();
         }catch (SQLException e){
             logger.error("Update card throws exception: "+e);

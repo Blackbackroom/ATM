@@ -13,12 +13,16 @@ public class Account {
         this.uah=uah;
     }
 
-    public void withdraw(int amountUah){
-        uah=uah-amountUah;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void deposit(int amountUah){
-        uah=uah+amountUah;
+    public void setInn(int inn) {
+        this.inn = inn;
+    }
+
+    public void setUah(int uah) {
+        this.uah = uah;
     }
 
     public int getId() {
@@ -29,7 +33,7 @@ public class Account {
         return inn;
     }
 
-    public int getBalance() {
+    public int getUah() {
         return uah;
     }
 }

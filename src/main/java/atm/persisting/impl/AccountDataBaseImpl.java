@@ -15,12 +15,12 @@ public class AccountDataBaseImpl implements AccountDataBase {
     MySQLConnector mySQLConnector=new MySQLConnector();
 
     @Override
-    public void addAccount(int id, int inn, int uah) {
+    public void addAccount(Account account) {
         try(Connection connection=mySQLConnector.getConnection();
             PreparedStatement preparedStatement=connection.prepareStatement("INSERT INTO `account` (id, inn, uah) VALUES(?,?,?)")){
-                preparedStatement.setInt(1, id);
-                preparedStatement.setInt(2, inn);
-                preparedStatement.setInt(3, uah);
+                preparedStatement.setInt(1, account.getId());
+                preparedStatement.setInt(2, account.getInn());
+                preparedStatement.setInt(3, account.getUah());
                 preparedStatement.executeUpdate();
         }catch (SQLException e){
             logger.error("Add account throws exception: "+e);
@@ -45,11 +45,11 @@ public class AccountDataBaseImpl implements AccountDataBase {
     }
 
     @Override
-    public void updateAccount(int id, int uah) {
+    public void updateAccount(Account account) {
         try(Connection connection=mySQLConnector.getConnection();
             PreparedStatement preparedStatement=connection.prepareStatement("UPDATE `account` SET uah=? WHERE id=?")){
-            preparedStatement.setInt(1, uah);
-            preparedStatement.setInt(2,id);
+            preparedStatement.setInt(1, account.getUah());
+            preparedStatement.setInt(2, account.getId());
             preparedStatement.executeUpdate();
         }catch (SQLException e){
             logger.error("Update account throws exception: "+e);

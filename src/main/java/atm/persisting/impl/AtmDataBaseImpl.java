@@ -44,11 +44,11 @@ public class AtmDataBaseImpl implements AtmDataBase {
     }
 
     @Override
-    public void updateAtm(int id, int uah) {
+    public void updateAtm(Atm atm) {
         try(Connection connection=mySQLConnector.getConnection();
             PreparedStatement preparedStatement=connection.prepareStatement("UPDATE `atm` SET uah=? WHERE id=?")){
-                preparedStatement.setInt(1, uah);
-                preparedStatement.setInt(2, id);
+                preparedStatement.setInt(1, atm.getUah());
+                preparedStatement.setInt(2, atm.getId());
                 preparedStatement.executeUpdate();
         }catch (SQLException e){
             logger.error("Update atm throws exception: "+e);
