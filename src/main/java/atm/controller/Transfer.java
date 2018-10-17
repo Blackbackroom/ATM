@@ -22,13 +22,23 @@ public class Transfer extends HttpServlet {
                     String toAccount = req.getParameter("toAccount");
                     String amount = req.getParameter("amount");
                     atmOperation.transfer(Integer.valueOf(toAccount), Integer.valueOf(amount));
-                    resp.getWriter().println("Transfer to account "+toAccount+" "+amount+" uah success" +
-                            "\n\n" +
-                            "ATM MENU:" +
-                            "\nshowBalance" +
-                            "\ntransfer?toAccount=*&amount=*" +
-                            "\nwithdraw?amount=*" +
-                            "\nreturnCard");
+                    if(atmOperation.showBalance()>Integer.valueOf(amount)) {
+                        resp.getWriter().println("Transfer to account " + toAccount + " " + amount + " uah success" +
+                                "\n\n" +
+                                "ATM MENU:" +
+                                "\nshowBalance" +
+                                "\ntransfer?toAccount=*&amount=*" +
+                                "\nwithdraw?amount=*" +
+                                "\nreturnCard");
+                    }else{
+                        resp.getWriter().println("Transfer to account " + toAccount + " " + amount + " uah denied" +
+                                "\n\n" +
+                                "ATM MENU:" +
+                                "\nshowBalance" +
+                                "\ntransfer?toAccount=*&amount=*" +
+                                "\nwithdraw?amount=*" +
+                                "\nreturnCard");
+                    }
                 }else{
                     resp.getWriter().println("Access denied");
                 }

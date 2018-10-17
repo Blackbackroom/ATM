@@ -1,7 +1,10 @@
 package atm.service;
 
 import atm.model.Account;
+import atm.model.Atm;
 import atm.model.Card;
+import atm.persisting.AtmDataBase;
+import atm.persisting.impl.AtmDataBaseImpl;
 import org.apache.log4j.Logger;
 
 public class AtmOperation {
@@ -9,10 +12,13 @@ public class AtmOperation {
     AccountOperation accountOperation=new AccountOperation();
     CardOperation cardOperation=new CardOperation();
     HistoryOperation historyOperation = new HistoryOperation();
+    AtmDataBaseImpl atmDataBase = new AtmDataBaseImpl();
 
+    Atm atm=atmDataBase.getAtm(1);
     Card card;
     Account account;
-    private int atmUah=100;
+
+    private int atmUah=atmDataBase.getAtm(atm.getId()).getUah();
     public static int countFalsePin=0;
     public static boolean checkCard=false;
     public static boolean checkPin=false;
@@ -61,9 +67,11 @@ public class AtmOperation {
     }
 
     public void withdraw(int amount){
-        if(atmUah>amount){
+        if(atm.getUah()>amount){
             accountOperation.withdraw(account.getId(), amount);
-            atmUah=atmUah-amount;
+            atm.withdraw(amount);
+//            atmUah=atmUah-amount;
+            atmDataBase.updateAtm(atm);
             historyOperation.addHistory("Withdraw cash "+amount);
             logger.info(historyOperation.getLastHistory());
         }else{
@@ -78,6 +86,10 @@ public class AtmOperation {
         checkPin=false;
         checkCard=false;
         countFalsePin=0;
+    }
+
+    public int getAtmUah() {
+        return atmUah;
     }
 
     // try with singlton
