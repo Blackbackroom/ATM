@@ -13,7 +13,9 @@ public class AtmOperation {
     Card card;
     Account account;
     private int atmUah=100;
-    private int countFalsePin=0;
+    public static int countFalsePin=0;
+    public static boolean checkCard=false;
+    public static boolean checkPin=false;
 
 
 
@@ -30,6 +32,7 @@ public class AtmOperation {
             if (countFalsePin > 2) {
                 historyOperation.addHistory("Wrong pin 3 times");
                 cardOperation.blockCard(1, historyOperation.getLastHistory());
+                returnCard();
                 return false;
             } else {
                 return false;
@@ -67,7 +70,29 @@ public class AtmOperation {
             historyOperation.addHistory("Withdraw cash canceled");
             logger.error(historyOperation.getLastHistory());
         }
-
     }
+
+    public void returnCard(){
+        account=null;
+        card=null;
+        checkPin=false;
+        checkCard=false;
+        countFalsePin=0;
+    }
+
+    // try with singlton
+    private static AtmOperation atmOperation;
+
+    private AtmOperation(){
+    }
+
+    public static AtmOperation getAtmOperation(){
+        if(atmOperation==null){
+            atmOperation=new AtmOperation();
+        }
+        return atmOperation;
+    }
+
+
 
 }

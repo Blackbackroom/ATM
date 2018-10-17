@@ -14,22 +14,23 @@ import java.io.IOException;
 public class PutCard extends HttpServlet {
     final static Logger logger=Logger.getLogger(PutCard.class);
 
-    AtmOperation atmOperation=new AtmOperation();
-    private boolean checkCard=false;
-
-    public AtmOperation getAtmOperation(){
-        return atmOperation;
-    }
+//    AtmOperation atmOperation=new AtmOperation();
+//    private boolean checkCard=false;
+    AtmOperation atmOperation=AtmOperation.getAtmOperation();
+//    public AtmOperation getAtmOperation(){
+//        return atmOperation;
+//    }
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
             String id = req.getParameter("id");
-            checkCard=atmOperation.checkCard(Integer.valueOf(id));
-            if(checkCard==true){
+            AtmOperation.checkCard=atmOperation.checkCard(Integer.valueOf(id));
+            if(AtmOperation.checkCard==true){
                 resp.getWriter().println("enterPin?pin=****");
             }else{
+                atmOperation.returnCard();
                 resp.getWriter().println("ERROR");
             }
         }catch (Exception e){
