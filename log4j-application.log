@@ -110,3 +110,6 @@
 2018-10-16 23:35:59 ERROR AtmOperation:68 - 2018-10-1623:35:59Withdraw cash canceled
 2018-10-16 23:38:35 INFO  AccountOperation:31 - 2018-10-1623:38:35Withdraw from account 10
 2018-10-16 23:38:36 INFO  AtmOperation:65 - 2018-10-1623:38:36Withdraw cash 10
+2018-10-17 22:34:50 ERROR CardOperation:23 - Card blocked
+2018-10-17 22:36:58 ERROR CardOperation:23 - Card blocked
+2018-10-17 22:41:53 ERROR CardOperation:23 - Card blocked
