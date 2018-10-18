@@ -30,7 +30,8 @@ public void setUp() throws SQLException {
     Mockito.when(resultSet.getString("type")).thenReturn("MASTERCARD");
     Mockito.when(resultSet.getString("date")).thenReturn("1019");
     Mockito.when(resultSet.getBoolean("chip")).thenReturn(false);
-
+    Mockito.when(resultSet.getBoolean("block")).thenReturn(false);
+    Mockito.when(resultSet.getString("reason")).thenReturn("");
 
     PreparedStatement statement=Mockito.mock(PreparedStatement.class);
     Mockito.when(statement.executeQuery()).thenReturn(resultSet);
