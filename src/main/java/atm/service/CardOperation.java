@@ -11,6 +11,7 @@ public class CardOperation {
     CardDataBaseImpl cardDataBase=new CardDataBaseImpl();
     Card card;
 
+
     public Card getCard(int id){
         return cardDataBase.getCard(id);
     }
@@ -34,8 +35,13 @@ public class CardOperation {
         return !card.isBlock();
     }
 
-    public boolean checkcCardPin(int id, String pin){
+    public boolean checkCardPin(int id, String pin){
         card=getCard(id);
         return card.getPin().equalsIgnoreCase(pin);
     }
+
+    public void setCardDataBase(CardDataBaseImpl cardDataBase) {
+        this.cardDataBase = cardDataBase;
+    }
+
 }

@@ -3,8 +3,8 @@ package atm.service;
 import atm.model.Account;
 import atm.model.Atm;
 import atm.model.Card;
-import atm.persisting.AtmDataBase;
 import atm.persisting.impl.AtmDataBaseImpl;
+import atm.persisting.impl.utils.MySQLConnector;
 import org.apache.log4j.Logger;
 
 public class AtmOperation {
@@ -13,6 +13,7 @@ public class AtmOperation {
     CardOperation cardOperation=new CardOperation();
     HistoryOperation historyOperation = new HistoryOperation();
     AtmDataBaseImpl atmDataBase = new AtmDataBaseImpl();
+
 
     Atm atm=atmDataBase.getAtm(1);
     Card card;
@@ -50,7 +51,7 @@ public class AtmOperation {
     }
 
     private boolean checkPinOneTime(String pin){
-        if(cardOperation.checkcCardPin(card.getId(), pin)==true){
+        if(cardOperation.checkCardPin(card.getId(), pin)==true){
             countFalsePin=0; return true;
         }
         countFalsePin++; return false;
@@ -96,9 +97,11 @@ public class AtmOperation {
     private static AtmOperation atmOperation;
 
     private AtmOperation(){
+        atmDataBase.setMySQLConnector(new MySQLConnector());
     }
 
     public static AtmOperation getAtmOperation(){
+
         if(atmOperation==null){
             atmOperation=new AtmOperation();
         }

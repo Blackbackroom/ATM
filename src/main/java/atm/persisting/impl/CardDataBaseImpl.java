@@ -83,4 +83,8 @@ public class CardDataBaseImpl implements CardDataBase {
             logger.error("Delete card throws exception: "+e);
         }
     }
+
+    public void setMySQLConnector(MySQLConnector mySQLConnector) {
+        this.mySQLConnector = mySQLConnector;
+    }
 }

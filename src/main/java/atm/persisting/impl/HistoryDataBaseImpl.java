@@ -57,4 +57,8 @@ public class HistoryDataBaseImpl implements HistoryDataBase {
         }
         return maxId;
     }
+
+    public void setMySQLConnector(MySQLConnector mySQLConnector) {
+        this.mySQLConnector = mySQLConnector;
+    }
 }

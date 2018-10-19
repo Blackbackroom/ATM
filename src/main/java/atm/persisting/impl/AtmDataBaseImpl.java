@@ -65,4 +65,8 @@ public class AtmDataBaseImpl implements AtmDataBase {
             logger.error("Delete atm throws exception: "+e);
         }
     }
+
+    public void setMySQLConnector(MySQLConnector mySQLConnector) {
+        this.mySQLConnector = mySQLConnector;
+    }
 }

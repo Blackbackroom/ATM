@@ -2,6 +2,7 @@ package atm.service;
 
 import atm.model.Account;
 import atm.persisting.impl.AccountDataBaseImpl;
+import atm.persisting.impl.utils.MySQLConnector;
 import org.apache.log4j.Logger;
 
 public class AccountOperation {
@@ -55,7 +56,7 @@ public class AccountOperation {
         }
     }
 
-
-
-
+    public void setAccountDataBase(AccountDataBaseImpl accountDataBase) {
+        this.accountDataBase = accountDataBase;
+    }
 }

@@ -66,4 +66,8 @@ public class AccountDataBaseImpl implements AccountDataBase {
             logger.error("Delete account throws exception: "+e);
         }
     }
+
+    public void setMySQLConnector(MySQLConnector mySQLConnector) {
+        this.mySQLConnector = mySQLConnector;
+    }
 }
